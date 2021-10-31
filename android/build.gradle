@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+//   implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.8'
+//        compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.8.8'
+//        compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.8'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(':app')
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
